@@ -184,7 +184,8 @@ body:has(.ov){overflow:hidden}
 .fbtn:hover{filter:brightness(1.08)}.fbtn:focus-visible{outline:3px solid var(--gold);outline-offset:1px}
 .ld{padding-bottom:78px}
 .psel{position:sticky;top:calc(68px + env(safe-area-inset-top,0px));z-index:4;border:2px solid var(--acc)}
-@media(max-width:560px){.ftr .ft{display:none}.fbtn{flex:1}}
+.ftr .cr{display:block;font-size:11px;margin-top:2px}
+@media(max-width:560px){.ftr{flex-wrap:wrap;gap:6px}.ftr .ft{order:3;flex-basis:100%;font-size:11px;line-height:1.35;white-space:normal}.fbtn{flex:1}.ld,.login{padding-bottom:130px}}
 </style></head><body>
 <div id="app"></div><div id="m"></div><div id="toast" role="status" aria-live="polite"></div>
 <script>
@@ -655,7 +656,7 @@ IMP.forEach(r=>{if(r.k=='new'){let nia=r.v.nia;if(!nia){do{c++;nia='NIA-'+String
 else if(r.k=='up'&&upd){const s=r.ex,v=r.v;['pob','dob','sex','addr','phone','status'].forEach(k=>{if(v[k])s[k]=v[k]});if(v.belt!=s.belt){s.belt=v.belt;s.hist.push({belt:v.belt,date:today()})}up++}});
 save();cm();Q.q='';Q.belt='';Q.st='Aktif';draw();toast(nw+' kohay ditambahkan, '+up+' diperbarui')}
 /* ===== FOOTER TETAP ===== */
-const foot=()=>`<footer class=ftr><button class="fbtn pda" onclick="cLogin(true)">📊 Pusat Data Atlet</button><span class=ft>Dojoku, manajemen dojo karate</span><button class="fbtn pp" onclick="cLogin()">🏛️ Pengurus Pusat</button></footer>`;
+const foot=()=>`<footer class=ftr><button class="fbtn pda" onclick="cLogin(true)">📊 Pusat Data Atlet</button><span class=ft>Dojoku, manajemen dojo karate<span class=cr>Create By : Diva Hizbullah, S.Kom</span></span><button class="fbtn pp" onclick="cLogin()">🏛️ Pengurus Pusat</button></footer>`;
 /* ===== PUSAT DATA ATLET (login pengurus pusat/cabang) ===== */
 let PT='d',PDJ='',PCB='',PEV='',PQ='',PYR='',PSEL=new Set(),PSF={g:'',k:'',kl:'',all:''};
 const PTS=[['d','Data Atlet Dojo',"PT='d';PQ='';draw()",'🏯'],['c','Atlet Cabang',"PT='c';draw()",'🌐'],['e','Event Mendatang',"PT='e';draw()",'📅'],['r','Riwayat Kejuaraan',"PT='r';draw()",'📜'],['s','Seleksi Atlet',"PT='s';draw()",'✅'],['k','Kelas Pertandingan',"PT='k';draw()",'🥋']];
