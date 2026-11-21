@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="id"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://www.googleapis.com; frame-src https://aplikasidojoku.firebaseapp.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#082d82">
@@ -10,6 +10,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Dojoku – Manajemen Dojo Karate</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.12.2/firebase-app-compat.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.12.2/firebase-auth-compat.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.12.2/firebase-firestore-compat.min.js"></script>
 <script>try{var t=localStorage.getItem('dojoflow_tema');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <style>
 :root{--bg:#f4f5f7;--card:#fff;--ink:#1b1f27;--mut:#667085;--line:#e3e6ea;--navy:#082d82;--acc:#0b3a9a;--accs:#e8eefc;--gold:#f5b638;--ok:#2e7d32;--onp:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
@@ -193,7 +196,7 @@ body:has(.ov){overflow:hidden}
 .ftr .cr{display:block;font-size:11px;margin-top:2px}
 @media(max-width:560px){.ftr{flex-wrap:wrap;gap:6px}.ftr .ft{order:3;flex-basis:100%;font-size:11px;line-height:1.35;white-space:normal}.fbtn{flex:1}.ld,.login{padding-bottom:130px}}
 </style></head><body>
-<div id="app"></div><div id="m"></div><div id="toast" role="status" aria-live="polite"></div>
+<div id="app"></div><div id="m"></div><div id="toast" role="status" aria-live="polite"></div><div id="cloudst" aria-live="off" style="position:fixed;right:8px;top:calc(env(safe-area-inset-top,0px) + 4px);z-index:2;font-size:11px;color:var(--mut);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:1px 8px;pointer-events:none;opacity:.85"></div>
 <script>
 const BELTS=['Putih','Kuning','Oranye','Hijau','Biru','Coklat','Coklat Strip','Hitam'];
 const BC={Putih:'#f1f5f9',Kuning:'#facc15',Oranye:'#f97316','Coklat Strip':'#5b2a0e',Hijau:'#16a34a',Biru:'#2563eb',Coklat:'#92400e',Hitam:'#0f172a'};
@@ -222,7 +225,7 @@ function seedDemo(){
  events:[e1,ev('Kejurnas Piala Menpora','2027-02-20','Jakarta','Nasional')],ukt:{period:'UKT Desember 2026',date:'2026-12-14',sel:[]},coaches:[{id:uid(),name:'Sensei Hendra',role:'Admin'},{id:uid(),name:'Sensei Maya',role:'Pelatih'}]},
  d2:{students:b,eval:[],ach:[],events:[],ukt:{period:'UKT Desember 2026',date:'2026-12-20',sel:[]},coaches:[{id:uid(),name:'Sensei Rudi',role:'Admin'}]}}}}
 let S;try{S=JSON.parse(localStorage.getItem(K))}catch(e){}if(!S)S=seed();try{Object.values(S.data||{}).forEach(d=>(d.ach||[]).concat(d.events||[]).forEach(x=>{if(x.level=='Cabang')x.level='Kabupaten'}))}catch(e){}
-function save(){try{const raw=localStorage.getItem(K);if(raw){const L=JSON.parse(raw);if(L&&(L._rev||0)>(S._rev||0))S=mergeS(L)}S._rev=(S._rev||0)+1;localStorage.setItem(K,JSON.stringify(S));saved()}catch(e){toast('Gagal menyimpan: penyimpanan perangkat penuh atau diblokir')}}
+function save(){try{const raw=localStorage.getItem(K);if(raw){const L=JSON.parse(raw);if(L&&(L._rev||0)>(S._rev||0))S=mergeS(L)}S._rev=(S._rev||0)+1;localStorage.setItem(K,JSON.stringify(S));saved();try{cloudPush()}catch(e){}}catch(e){toast('Gagal menyimpan: penyimpanan perangkat penuh atau diblokir')}}
 /* Gabungkan perubahan dari tab/pengguna lain: data dojo aktif milik sesi ini menang, data dojo lain diambil dari versi terbaru */
 function mergeS(L){const m=ses&&!ses.central?ses.dojo:null;
  if(ses&&ses.central){L.central=S.central;L.pusat=S.pusat||L.pusat;L.master=S.master||L.master;L.gone=S.gone||L.gone;{const ids=new Set(S.dojos.map(j=>j.id)),gone=new Set(S.gone||[]);L.dojos=S.dojos.concat(L.dojos.filter(j=>!ids.has(j.id)&&!gone.has(j.id)));for(const k in L.data)if(!(k in S.data)&&gone.has(k))delete L.data[k];for(const k in S.data)L.data[k]=S.data[k]}S.users.forEach(u=>{const o=L.users.find(x=>x.id==u.id);if(o&&u.ph&&(!o.ph||o.ph.h!=u.ph.h)){o.ph=u.ph;o.must=u.must}});return L}
@@ -988,5 +991,48 @@ document.querySelectorAll('input[name=u],input[name=username]').forEach(i=>{i.au
 document.querySelectorAll('input[type=password]:not([autocomplete])').forEach(i=>i.autocomplete=['p','old'].includes(i.name)?'current-password':'new-password');
 document.querySelectorAll('input[type=password]').forEach(i=>{if(i.parentNode.classList.contains('pw'))return;const w=document.createElement('span');w.className='pw';i.parentNode.insertBefore(w,i);w.appendChild(i);const b=document.createElement('button');b.type='button';b.className='eye';b.innerHTML=EYE;b.setAttribute('aria-label','Tampilkan kata sandi');b.setAttribute('aria-pressed','false');b.onclick=()=>{const sh=i.type=='password';i.type=sh?'text':'password';b.innerHTML=sh?EYEX:EYE;b.setAttribute('aria-label',sh?'Sembunyikan kata sandi':'Tampilkan kata sandi');b.setAttribute('aria-pressed',String(sh));i.focus()};w.appendChild(b)})}
 new MutationObserver(eyes).observe(document.body,{childList:true,subtree:true});
+
+/* ===== FIREBASE: database cloud (Firestore) ===== */
+const FB_CFG={apiKey:"AIzaSyD3pz9ClkDby6-4HXaNyXQb-wIR4b5QpiA",authDomain:"aplikasidojoku.firebaseapp.com",projectId:"aplikasidojoku",storageBucket:"aplikasidojoku.firebasestorage.app",messagingSenderId:"292830347015",appId:"1:292830347015:web:a1a2149f94021d5c564fa2"};
+const CLOUD={db:null,ready:false,cid:Math.random().toString(36).slice(2)+Date.now().toString(36),timer:0,busy:false,again:false,unsub:null,CH:300000};
+const cRef=()=>CLOUD.db.collection('dojoku');
+function cloudSet(t){try{const e=document.getElementById('cloudst');if(e)e.textContent=t}catch(x){}}
+async function cloudRead(){const m=await cRef().doc('meta').get();if(!m.exists)return null;const d=m.data(),n=d.n||0;if(!n)return{meta:d,state:null};const qs=await Promise.all(Array.from({length:n},(_,i)=>cRef().doc('c'+i).get()));let s='';for(const q of qs){if(!q.exists)throw new Error('potongan data hilang');s+=q.data().t}return{meta:d,state:JSON.parse(s)}}
+function cloudApply(R){/* gabungkan data cloud ke perangkat ini */
+ try{let L=R.state;if(!L||!L.users||!L.dojos||!L.data)return false;
+  S=ses?mergeS(L):L;S._rev=Math.max(S._rev||0,R.meta.rev||0);
+  localStorage.setItem(K,JSON.stringify(S));
+  if(ses)try{vses()}catch(e){}
+  if(!$('#m').innerHTML)draw();return true}catch(e){console.error(e);return false}}
+async function cloudPull(){if(!CLOUD.ready)return;try{cloudSet('Mengambil data...');const R=await cloudRead();if(R&&R.state&&(R.meta.rev||0)>(S._rev||0)){cloudApply(R)}cloudSet('Tersinkron ☁️')}catch(e){console.error(e);cloudSet('Offline')}}
+function cloudPush(){if(!CLOUD.ready)return;clearTimeout(CLOUD.timer);CLOUD.timer=setTimeout(cloudDoPush,1500)}
+async function cloudDoPush(){if(!CLOUD.ready)return;if(CLOUD.busy){CLOUD.again=true;return}CLOUD.busy=true;
+ try{cloudSet('Menyimpan ke cloud...');
+  const cur=await cRef().doc('meta').get();
+  if(cur.exists&&(cur.data().rev||0)>(S._rev||0)&&cur.data().by!==CLOUD.cid){/* ada versi lebih baru di cloud: gabungkan dulu */
+   const R=await cloudRead();if(R&&R.state){cloudApply(R);S._rev=(S._rev||0)+1;localStorage.setItem(K,JSON.stringify(S))}}
+  const str=JSON.stringify(S),parts=[];for(let i=0;i<str.length;i+=CLOUD.CH)parts.push(str.slice(i,i+CLOUD.CH));
+  const oldN=cur.exists?(cur.data().n||0):0,b=CLOUD.db.batch();
+  parts.forEach((t,i)=>b.set(cRef().doc('c'+i),{t}));
+  for(let i=parts.length;i<oldN;i++)b.delete(cRef().doc('c'+i));
+  b.set(cRef().doc('meta'),{rev:S._rev||0,n:parts.length,by:CLOUD.cid,at:firebase.firestore.FieldValue.serverTimestamp()});
+  await b.commit();cloudSet('Tersinkron ☁️')}
+ catch(e){console.error(e);cloudSet('Gagal sinkron, data aman di perangkat')}
+ finally{CLOUD.busy=false;if(CLOUD.again){CLOUD.again=false;cloudPush()}}}
+async function cloudInit(){
+ try{if(!window.firebase)throw new Error('SDK Firebase tidak termuat');
+  firebase.initializeApp(FB_CFG);
+  await firebase.auth().signInAnonymously();
+  CLOUD.db=firebase.firestore();CLOUD.ready=true;
+  const R=await cloudRead();
+  if(!R||!R.state){await cloudDoPush()}/* cloud masih kosong: unggah data perangkat ini */
+  else if((R.meta.rev||0)>(S._rev||0))cloudApply(R);
+  else if((R.meta.rev||0)<(S._rev||0))await cloudDoPush();
+  cloudSet('Tersinkron ☁️');
+  /* realtime: perangkat lain menyimpan -> ikut berubah */
+  CLOUD.unsub=cRef().doc('meta').onSnapshot(s=>{if(!s.exists)return;const d=s.data();if(d.by===CLOUD.cid)return;if((d.rev||0)>(S._rev||0))cloudPull()},e=>console.error(e));
+  addEventListener('online',()=>cloudPush());
+ }catch(e){console.error('Firebase:',e);cloudSet('Offline (data di perangkat)')}}
+cloudInit();
 migrate().finally(()=>{draw();if(WEAK)setTimeout(()=>alert('Peringatan keamanan: ada akun yang masih memakai kata sandi bawaan (demo123 atau pusat123). Segera ganti kata sandinya atau hapus akun tersebut.'),300)});
 </script></body></html>
