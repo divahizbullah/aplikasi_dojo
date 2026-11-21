@@ -362,7 +362,7 @@ function uRow(s){const u=D().ukt,on=u.sel.includes(s.id),n=prest(s),i=BI(s.belt)
 if(s.belt=='Hitam')r='<small style="display:inline">Dan: tidak diproses otomatis</small>';
 else if(on){const o=[BELTS[i+1],BELTS[i+2]].filter(Boolean);r=`<select style="width:auto;min-height:36px" aria-label="Sabuk tujuan ${esc(s.name)}" onchange="setTg('${s.id}',this.value)">${o.map((b,k)=>`<option value="${b}" ${b==tj?'selected':''}>${b}${k?' (naik 2 tingkat)':''}</option>`).join('')}</select>`}
 else r=bd(NEXT(s.belt));
-return`<div class=row style="cursor:default;flex-wrap:wrap"><label style="display:flex;gap:12px;align-items:center;flex:1;min-width:200px;margin:0;color:var(--ink);font-weight:400;cursor:pointer"><input type=checkbox class=ck ${on?'checked':''} onchange="tg('${s.id}')">${av(s)}<div class=g><b>${esc(s.name)}</b><small>${esc(s.nia)}${n?', 🏅 berprestasi ('+n+' medali)':''}</small></div></label>${bd(s.belt)}<span style="color:var(--mut)">→</span>${r}</div>`}
+return`<div class=row style="cursor:default;flex-wrap:wrap"><label style="display:flex;gap:12px;align-items:center;flex:1;min-width:200px;margin:0;color:var(--ink);font-weight:400;cursor:pointer"><input type=checkbox class=ck ${on?'checked':''} onchange="tg('${s.id}')">${av(s)}<div class=g><b>${esc(s.name)}</b><small>${esc(s.nia)}${n?', 🏅 berprestasi ('+n+' medali)':''}${on&&(u.sent||{})[s.id]?' · ✓ terdaftar di aplikasi UKT':''}</small></div></label>${bd(s.belt)}<span style="color:var(--mut)">→</span>${r}</div>`}
 function uList(){const r=uFt();return r.length?r.map(uRow).join(''):'<p class=emp>Tidak ada kohay yang cocok. Ubah pencarian atau filter sabuk.</p>'}
 function ucnt(){const c=$('#ucnt');if(c)c.textContent=uFt().length+' dari '+D().students.filter(s=>s.status=='Aktif').length+' kohay aktif'}
 function uInfo(){const u=D().ukt,n=u.sel.length;
@@ -371,16 +371,18 @@ if(u.date)return`<p style="margin:10px 0 0;font-size:14px">🔔 Pada <b>${fd(u.d
 return'<p class=note>Menunggu jadwal dari pengurus pusat. Anda tetap bisa memilih peserta sekarang; mereka naik sabuk otomatis pada tanggal ujian.</p>'}
 function ukt(){const u=D().ukt,n=u.sel.length;
 return`<h2 style="margin-bottom:12px">Persiapan UKT</h2><div class=card><h3>Program UKT dari pusat</h3>${uProg()}${uInfo()}</div>
-<div class=bar><span class=g><b>${n}</b> kohay dipilih</span><button class="btn sm" onclick="uAll()">Pilih semua yang tampil</button><button class="btn sm" onclick="D().ukt.sel=[];D().ukt.tg={};save();draw()">Kosongkan</button><button class="btn pri" onclick="exp()" ${n?'':'disabled style="opacity:.5"'}>Ekspor Data UKT ke Excel (.xlsx)</button></div>
+<div id=ukst>${ukStatus()}</div>
+<div class=bar><span class=g><b>${n}</b> kohay dipilih</span><button class="btn sm" onclick="uAll()">Pilih semua yang tampil</button><button class="btn sm" onclick="uClr()">Kosongkan</button></div>
 <div class=bar><div class=sb2><span aria-hidden=true>🔍</span><input type=search placeholder="Cari nama atau NIA" aria-label="Cari kohay UKT" value="${esc(UQ.q)}" oninput="UQ.q=this.value;$('#ulst').innerHTML=uList();ucnt()"></div></div><div class=chips>${uchips()}</div><small id=ucnt style="margin:0 0 8px">${uFt().length} dari ${D().students.filter(s=>s.status=='Aktif').length} kohay aktif</small>
-<div class=card id=ulst style="padding:4px">${uList()}</div>${tcard()}<p class=note>Sabuk tujuan default adalah satu tingkat di atas sabuk saat ini. Kolom file mengikuti format unggah UKT pusat.</p>`}
-function tg(id){const u=D().ukt;if(u.sel.includes(id)){u.sel=u.sel.filter(x=>x!=id);if(u.tg)delete u.tg[id]}else u.sel=[...u.sel,id];save();draw()}
-function uAll(){const u=D().ukt;uFt().forEach(s=>{if(!u.sel.includes(s.id))u.sel.push(s.id)});save();draw()}
-function setTg(id,b){const u=D().ukt;(u.tg=u.tg||{})[id]=b;save()}
+<div class=card id=ulst style="padding:4px">${uList()}</div><p class=note>Sabuk tujuan default adalah satu tingkat di atas sabuk saat ini. Kohay yang dicentang otomatis menjadi peserta di aplikasi UKT pusat, tanpa unduh atau unggah Excel. Mengubah atau membatalkan centang ikut memperbarui di sana.</p>`}
+function tg(id){const u=D().ukt;if(u.sel.includes(id)){u.sel=u.sel.filter(x=>x!=id);if(u.tg)delete u.tg[id]}else u.sel=[...u.sel,id];save();draw();uktSend()}
+function uAll(){const u=D().ukt;uFt().forEach(s=>{if(!u.sel.includes(s.id))u.sel.push(s.id)});save();draw();uktSend()}
+function uClr(){const u=D().ukt;u.sel=[];u.tg={};save();draw();uktSend()}
+function setTg(id,b){const u=D().ukt;(u.tg=u.tg||{})[id]=b;save();uktSend()}
 function ntf(t,h){$('#m').innerHTML=`<div class=ov><div class=mo><div class=mh>${t}<button class=x aria-label="Tutup" onclick=cm()>✕</button></div>${h}<button class="btn pri wide" onclick=cm()>Mengerti</button></div></div>`}
 function runUkt(){const d=D(),u=d.ukt,dt=u.date&&u.date<=today()?u.date:today(),L=[];
 u.sel.forEach(id=>{const s=d.students.find(x=>x.id==id);if(!s)return;const t=TB(s);if(s.belt=='Hitam'||!BELTS.includes(t)||t==s.belt){L.push({n:s.name,f:s.belt,t:s.belt,skip:1});return}L.push({n:s.name,f:s.belt,t,j:BI(t)-BI(s.belt)});s.belt=t;s.hist.push({belt:t,date:dt})});
-u.done=ukey(u);u.last={date:dt,n:L.filter(x=>!x.skip).length};u.sel=[];u.tg={};save();return{L,dt}}
+u.done=ukey(u);u.last={date:dt,n:L.filter(x=>!x.skip).length};u.sel=[];u.tg={};u.sent={};u.sig='[]';u.dirty=0;save();return{L,dt}}
 function autoUkt(){const u=D().ukt;if(!u.date||u.date>today()||!u.sel.length||u.done==ukey(u))return null;return runUkt()}
 function runNow(){const n=D().ukt.sel.length;if(!n||!confirm('Naikkan sabuk '+n+' kohay terpilih sekarang?'))return;const p=runUkt();draw();ntfPromo(p)}
 function ntfPromo(p){const ok=p.L.filter(x=>!x.skip),sk=p.L.filter(x=>x.skip);ntf('🔔 Kenaikan sabuk UKT',`<p>${ok.length} kohay naik sabuk (tanggal ${fd(p.dt)}). Riwayat sabuk sudah diperbarui.</p><div class=card style="padding:4px;max-height:240px;overflow:auto">${ok.map(x=>`<div class=row style="cursor:default;padding:8px"><div class=g><b>${esc(x.n)}</b>${x.j>1?'<small>🏅 Naik 2 tingkat</small>':''}</div>${bd(x.f)}<span>→</span>${bd(x.t)}</div>`).join('')||'<p class=emp>Tidak ada perubahan.</p>'}</div>${sk.length?`<p class=note>${sk.length} kohay dilewati (sabuk hitam atau tujuan tidak berubah): ${sk.map(x=>esc(x.n)).join(', ')}.</p>`:''}`)}
@@ -768,12 +770,12 @@ async function bkcExp(){const d=D(),dj=DJ(),ok=d.ukt.sel.map(id=>d.students.find
 const rows=ok.map(s=>({'Nama':s.name,'Dojo':dj.name,'Wilayah':dj.region||'','Tempat Lahir':s.pob,'Tanggal Lahir':s.dob?s.dob.split('-').reverse().join('-'):'','Tingkat Sekarang':KYU[s.belt],'Tingkat Tujuan':KYU[TB(s)]||''}));
 const ws=XLSX.utils.json_to_sheet(rows);ws['!cols']=[26,26,16,16,14,18,18].map(w=>({wch:w}));const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'Peserta');const buf=XLSX.write(wb,{bookType:'xlsx',type:'array'}),fn='UKT_Import_'+dj.name.replace(/\W+/g,'_')+'.xlsx';
 try{const dl=window.claude&&await claude.use('downloads');if(dl)return await dl.save({filename:fn,data:buf})}catch(e){if(e&&e.code=='declined')return}XLSX.writeFile(wb,fn)}
-function land(){const F6=[['🥋','Kohay dan sabuk','Biodata lengkap, foto, dan riwayat kenaikan sabuk setiap kohay.'],['📈','Catatan perkembangan','Nilai Kihon, Kata, Kumite, fisik, dan disiplin dari waktu ke waktu.'],['🏆','Prestasi dan medali','Statistik medali dojo dan peringkat atlet paling berprestasi.'],['📅','Kejuaraan','Daftarkan kohay ke kontingen dan pantau status kesiapan mereka.'],['📝','UKT sekali klik','Centang kohay, sabuk tujuan terisi otomatis, Excel siap unggah.'],['🔒','Data dojo terpisah','Setiap dojo punya ruang sendiri dengan peran Kepala Dojo, Asisten Pelatih, dan Pelatih.']];
+function land(){const F6=[['🥋','Kohay dan sabuk','Biodata lengkap, foto, dan riwayat kenaikan sabuk setiap kohay.'],['📈','Catatan perkembangan','Nilai Kihon, Kata, Kumite, fisik, dan disiplin dari waktu ke waktu.'],['🏆','Prestasi dan medali','Statistik medali dojo dan peringkat atlet paling berprestasi.'],['📅','Kejuaraan','Daftarkan kohay ke kontingen dan pantau status kesiapan mereka.'],['📝','UKT sekali klik','Centang kohay, sabuk tujuan terisi otomatis, langsung jadi peserta di aplikasi UKT pusat.'],['🔒','Data dojo terpisah','Setiap dojo punya ruang sendiri dengan peran Kepala Dojo, Asisten Pelatih, dan Pelatih.']];
 $('#app').innerHTML=`<div class=ld><header class=lbar><div class=lb><div class=lg2>🥋</div>Dojoku</div><div class=ev><button class="btn sm" onclick="LP=false;draw()">Masuk</button></div></header>
 <section class=lhero><div><span class=pill>Untuk pelatih dan pengurus dojo karate</span><h1>Kelola dojo dari pinggir matras, <em>tanpa ribet.</em></h1><p>Biodata kohay, kenaikan sabuk, prestasi, kejuaraan, sampai daftar UKT siap unggah. Semua dalam satu aplikasi yang nyaman dibuka dari HP.</p><div class=cta><button class="btn pri big" onclick="LP=false;draw()">Masuk ke dojo</button><button class="btn big" onclick="uktOpen()">🧾 Aplikasi UKT</button>${DEMO?'<button class="btn big" onclick=demo()>Coba demo dulu</button>':''}</div><small>Tanpa instal. Data tiap dojo terpisah dan aman.</small></div>
 <div class=lv aria-hidden=true><div class=phone><div class=th><small style="color:#fff;opacity:.8">Contoh tampilan</small><b>128</b>kohay aktif</div>${['Putih','Kuning','Hijau','Biru'].map((b,i)=>`<div class=hb><span>${b}</span><i style="width:${[70,55,40,25][i]}%;background:${BC[b]}"></i></div>`).join('')}<div class=row style="cursor:default;padding:8px;background:var(--accs);border-radius:10px;border:0;margin-top:6px"><i class=ic style="width:34px;height:34px;font-size:16px">📝</i><div class=g style="font-size:13px"><b>12 kohay siap UKT</b></div></div></div><div class=chipf style="top:24px;left:0">🏅 Emas +3</div><div class=chipf style="bottom:30px;right:0;animation-delay:-2s">📅 UKT 14 Des</div></div></section>
 <section class=lsec><h2>Semua yang dibutuhkan pelatih</h2><p class=sb>Dibuat sederhana, supaya tidak membingungkan bagi siapa pun.</p><div class=fg>${F6.map(f=>`<div class=fc><i class=ic>${f[0]}</i><h3>${f[1]}</h3><p>${f[2]}</p></div>`).join('')}</div></section>
-<section class=lsec><h2>Mulai dalam tiga langkah</h2><p class=sb>Dari daftar sampai siap UKT.</p><div class=fg>${[['Terima akun','Pengurus cabang mendaftarkan Anda sebagai MSH dan membuat akun.'],['Masukkan kohay','Tambah kohay dan undang pelatih lain.'],['Pantau dan kirim UKT','Lihat perkembangan, lalu ekspor atau kirim data UKT.']].map((x,i)=>`<div class=fc><div class=nn>${i+1}</div><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join('')}</div></section>
+<section class=lsec><h2>Mulai dalam tiga langkah</h2><p class=sb>Dari daftar sampai siap UKT.</p><div class=fg>${[['Terima akun','Pengurus cabang mendaftarkan Anda sebagai MSH dan membuat akun.'],['Masukkan kohay','Tambah kohay dan undang pelatih lain.'],['Pantau dan kirim UKT','Lihat perkembangan, lalu centang peserta UKT. Datanya terkirim otomatis ke pusat.']].map((x,i)=>`<div class=fc><div class=nn>${i+1}</div><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join('')}</div></section>
 <section class=band><h2>Siap merapikan dojo Anda?</h2><p>${DEMO?'Masuk dengan akun dari pengurus cabang, atau lihat dulu lewat akun demo.':'Masuk dan mulai rapikan data dojo Anda.'}</p><div class=cta style="justify-content:center"><button class="btn big" style="background:var(--gold);border-color:var(--gold);color:#082d82;font-weight:600" onclick="LP=false;draw()">Masuk ke dojo</button><button class="btn big" style="background:transparent;color:#fff;border-color:#ffffff88" onclick="uktOpen()">🧾 Aplikasi UKT</button>${DEMO?'<button class="btn big" style="background:transparent;color:#fff;border-color:#ffffff88" onclick=demo()>Coba demo</button>':''}</div></section>
 ${foot()}</div>`}
 /* APLIKASI UKT TUJUAN (bisa banyak, format Excel dapat diatur) */
@@ -1161,7 +1163,64 @@ async function uktMigRun(o,live){o=o||UKTMIG;if(!sOk()||!o)return;const R={dojoB
  save();
  let u='';if(live)u='Data aplikasi UKT sudah ada di database.';else try{const w=UKTF.a&&UKTF.a.contentWindow;if(w&&w.__ukImport){await w.__ukImport(o);u='Data aplikasi UKT (peserta, dojo, pengeluaran) juga sudah disimpan ke database.'}else u='Buka lagi menu Aplikasi UKT lalu ulangi agar data aplikasi UKT ikut tersimpan.'}catch(e){u='Data aplikasi UKT belum tersimpan: '+e.message}
  UKTMIG=null;draw();box('Pemindahan selesai',`<div class=card style="margin:0"><p style="margin:0">${R.dojo} dojo (${R.dojoBaru} baru), ${R.stu} kohay ditambahkan, ${R.dup} sudah ada (${R.naik} sabuknya dinaikkan ke sabuk tujuan), ${R.pel} pelatih dijadikan Kepala Dojo${sP().dph?', '+R.akun+' akun dibuat':''}.</p><p class=note style="margin:8px 0 0">${esc(u)}</p><p class=note style="margin:8px 0 0">Sabuk kohay diisi dari kolom Tingkat Tujuan. Kohay tidak dimasukkan ke daftar UKT Dojoku supaya sabuk tidak naik otomatis.</p></div><button class="btn pri wide" onclick=cm()>Tutup</button>`)}
-(function(){const d0=draw;draw=function(){const r=d0.apply(this,arguments);uktSync();return r};
+
+/* ===== KIRIM OTOMATIS PESERTA UKT: AKUN DOJO -> APLIKASI UKT PUSAT =====
+   Kohay yang dicentang di menu UKT dojo langsung ditulis ke database aplikasi UKT (dokumen ukt_meta dan ukt_c*),
+   jadi tidak perlu unduh/unggah Excel. Id peserta tetap (dk_<dojo>_<kohay>) sehingga aman dikirim berulang. */
+const UKS={busy:false,again:false,timer:0,err:'',dup:0,at:0};
+const ukId=(j,s)=>'dk_'+j+'_'+s;
+const ukN=x=>String(x||'').toLowerCase().replace(/[^\p{L}\p{N} ]/gu,' ').replace(/\s+/g,' ').trim();
+function ukPel(){const dj=DJ(),k=((D().coaches)||[]).find(c=>c.role=='Kepala Dojo');return clean(dj.head||(k&&k.name)||'',80)}
+function ukDesired(){const d=D(),dj=DJ(),o=[];(d.ukt.sel||[]).forEach(id=>{const s=d.students.find(x=>x.id==id);if(!s)return;const tj=TB(s),a=KYU[s.belt],b=KYU[tj];if(!a||!b||tj==s.belt)return;
+ o.push({id:ukId(dj.id,s.id),nama:s.name,dojo:dj.name,wilayah:dj.region||dj.city||'',pelatih:ukPel(),tmp:s.pob||'',tgl:s.dob||'',dari:a,ke:b,src:'dojoku',sid:s.id})});return o}
+const ukSig=w=>JSON.stringify(w.map(x=>[x.id,x.nama,x.dojo,x.wilayah,x.pelatih,x.tmp,x.tgl,x.dari,x.ke]));
+/* terapkan ke data aplikasi UKT: daftarkan dojo bila belum ada, tambah/perbarui peserta, hapus yang dibatalkan */
+function ukApply(st,want,gone,dj,R){R.dup=0;R.dupIds=new Set();st.data=st.data||[];st.dojos=st.dojos||[];
+ let rd=st.dojos.find(x=>nn(x.nama)==nn(dj.name));
+ if(!rd&&want.length){rd={id:Date.now()+Math.random().toString(36).slice(2,8),nama:dj.name,wilayah:dj.region||dj.city||'',pelatih:ukPel(),telp:dj.phone||'',email:dj.email||'',ujian:0,status:'Belum'};st.dojos.push(rd)}
+ if(gone.size)st.data=st.data.filter(p=>!gone.has(p.id));
+ want.forEach(w=>{const q={...w};if(rd){q.dojo=rd.nama;q.wilayah=rd.wilayah||q.wilayah;q.pelatih=rd.pelatih||q.pelatih}
+  const i=st.data.findIndex(p=>p.id==q.id);
+  if(i>=0){if(JSON.stringify(st.data[i])!=JSON.stringify(q))st.data[i]=q;return}
+  const k=ukN(q.nama),dk=String(q.dojo).trim().toLowerCase();
+  if(st.data.some(p=>String(p.dojo||'').trim().toLowerCase()==dk&&ukN(p.nama)==k&&(!p.tgl||!q.tgl||p.tgl==q.tgl))){R.dup++;R.dupIds.add(q.id);return}
+  st.data.push(q)})}
+async function ukCloud(fn){const db=window.uktDb();if(!db)throw new Error('database belum tersambung');
+ const ref=db.collection('dojoku'),meta=ref.doc('ukt_meta');
+ for(let t=0;t<6;t++){
+  const m=await meta.get(),cd=m.exists?m.data():{rev:0,n:0};let st={data:[],dojos:[],keluar:[],req:[],up:[],riwayat:[],info:{},logo:''};
+  if(cd.n){const qs=await Promise.all(Array.from({length:cd.n},(_,i)=>ref.doc('ukt_c'+i).get()));let s='';for(const q of qs){if(!q.exists)throw new Error('potongan data UKT hilang');s+=q.data().t}if(s)st=Object.assign(st,JSON.parse(s))}
+  const b4=JSON.stringify(st);fn(st);const str=JSON.stringify(st);if(str===b4)return true;
+  const parts=cloudChunks(str);
+  const ok=await db.runTransaction(async tx=>{const c=await tx.get(meta),r=c.exists?(c.data().rev||0):0;if(r!==(cd.rev||0))return false;
+   parts.forEach((x,i)=>tx.set(ref.doc('ukt_c'+i),{t:x}));for(let i=parts.length;i<(cd.n||0);i++)tx.delete(ref.doc('ukt_c'+i));
+   tx.set(meta,{rev:r+1,n:parts.length,by:'dojoku-'+CLOUD.cid,at:firebase.firestore.FieldValue.serverTimestamp()});return true});
+  if(ok)return true}
+ throw new Error('terlalu banyak bentrokan penyimpanan, coba lagi')}
+function ukErr(e){const c=(e&&e.code)||'',m=String((e&&e.message)||e);return c=='permission-denied'?'ditolak aturan Firestore':c=='unavailable'?'tidak ada koneksi':m.slice(0,60)}
+function ukShow(){try{const c=document.getElementById('ukst');if(c)c.innerHTML=ukStatus();const l=document.getElementById('ulst');if(l&&!l.contains(document.activeElement))l.innerHTML=uList()}catch(e){}}
+function uktSend(now){if(!ses||ses.central||!S.data[ses.dojo])return;D().ukt.dirty=1;clearTimeout(UKS.timer);UKS.timer=setTimeout(ukRun,now?0:700);ukShow()}
+async function ukRun(){UKS.timer=0;if(!ses||ses.central||!S.data[ses.dojo])return;if(UKS.busy){UKS.again=true;return}
+ const d=D(),dj=DJ(),u=d.ukt;if(!dj||!u)return;UKS.busy=true;UKS.err='';UKS.at=Date.now();ukShow();
+ const want=ukDesired(),wsid=new Set(want.map(w=>w.sid)),gone=new Set(Object.keys(u.sent||{}).filter(k=>!wsid.has(k)).map(k=>ukId(dj.id,k))),R={};
+ try{await ukCloud(st=>ukApply(st,want,gone,dj,R));
+  u.sent={};want.forEach(w=>{if(!R.dupIds.has(w.id))u.sent[w.sid]=1});u.sig=ukSig(want);u.dirty=0;UKS.dup=R.dup;
+  QUIET=1;save();QUIET=0;if(want.length||gone.size)toast('Peserta terkirim ke aplikasi UKT ✓')}
+ catch(e){console.error(e);UKS.err=ukErr(e)}
+ finally{UKS.busy=false;if(UKS.again){UKS.again=false;uktSend()}ukShow()}}
+function ukTick(){try{if(!ses||ses.central||!S.data[ses.dojo]||UKS.busy||UKS.timer)return;const u=D().ukt;if(!u)return;
+ if((u.dirty||ukSig(ukDesired())!=(u.sig||'[]'))&&Date.now()-UKS.at>15000)uktSend()}catch(e){}}
+function ukStatus(){const d=D(),u=d.ukt,want=ukDesired(),n=u.sel.length;
+ const skip=u.sel.map(id=>d.students.find(s=>s.id==id)).filter(s=>s&&(!KYU[s.belt]||!KYU[TB(s)]||TB(s)==s.belt)).length;
+ let st,cl='tag';
+ if(UKS.busy)st='⏳ Mengirim peserta ke aplikasi UKT pusat…';
+ else if(UKS.err){st='⚠️ Belum terkirim ('+esc(UKS.err)+'). Dicoba lagi otomatis.';cl='warn'}
+ else if(u.dirty||ukSig(want)!=(u.sig||'[]'))st='⏳ Menunggu pengiriman…';
+ else if(want.length)st='✅ '+(want.length-UKS.dup)+' kohay sudah otomatis menjadi peserta di aplikasi UKT pusat';
+ else st=n?'Belum ada kohay yang bisa dikirim.':'Centang kohay di bawah, mereka langsung menjadi peserta di aplikasi UKT pusat.';
+ return`<div class=card style="border-left:4px solid var(--gold)"><h3>🚀 Terhubung otomatis ke aplikasi UKT pusat</h3><p class=${cl} style="margin:6px 0 0;font-size:14px">${st}</p>${skip?`<p class=note style="margin:6px 0 0">${skip} kohay tidak ikut dikirim karena sabuk hitam atau tujuannya Dan, di luar skala Kyu aplikasi UKT.</p>`:''}${UKS.dup?`<p class=note style="margin:6px 0 0">${UKS.dup} kohay sudah ada di aplikasi UKT (nama dan tanggal lahir sama), jadi tidak digandakan.</p>`:''}<div class=bar style="margin-top:10px"><button class="btn sm" onclick="uktSend(1)">Kirim ulang</button><button class="btn sm" onclick="go('uktapp')">🧾 Lihat di aplikasi UKT</button></div><p class=note style="margin:8px 0 0">Biaya ujian dan status pembayaran diatur oleh pengurus pusat. Dojo Anda otomatis terdaftar di aplikasi UKT saat pertama kali mengirim peserta.</p></div>`}
+setInterval(ukTick,20000);
+(function(){const d0=draw;draw=function(){const r=d0.apply(this,arguments);uktSync();ukTick();return r};
  const t0=tema;tema=function(){const r=t0.apply(this,arguments);uktTheme();return r};
  addEventListener('resize',uktPos);addEventListener('scroll',uktPos,{passive:true});uktSync()})();
 </script>
