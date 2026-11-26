@@ -277,6 +277,59 @@ img.lg2,.lb img.lg2,.brand img.lg2{background:transparent;object-fit:contain}
  .dash2 .kpi.st{padding:13px;gap:11px}.dash2 .kpi.st .ic{width:42px;height:42px;font-size:20px;border-radius:13px}.dash2 .kpi.st b{font-size:23px}
  .dash2 .qa{flex-wrap:nowrap;overflow-x:auto;margin-right:-12px;padding:2px 12px 8px 0;scrollbar-width:none}.dash2 .qa::-webkit-scrollbar{display:none}.dash2 .qa .btn{flex:none;min-height:42px}}
 </style>
+<style id="pd2css">
+/* ===== PUSAT DATA ATLET v2 ===== */
+.pd2{--p-r:20px;--p-sh:0 1px 2px #0b1b4a0d,0 8px 24px -8px #0b1b4a26;font-feature-settings:"tnum" 1}
+.pd2 .phero{position:relative;overflow:hidden;isolation:isolate;display:flex;align-items:center;gap:18px;padding:26px;border-radius:24px;margin-bottom:18px;color:#fff;
+ background:radial-gradient(120% 150% at 100% 0%,#f59e0b 0%,#b45309 30%,#1e3a8a 70%,#0a1f5c 100%);box-shadow:0 18px 40px -16px #0a1f5caa,0 2px 6px #0a1f5c40;animation:p2u .55s cubic-bezier(.2,.8,.2,1) both}
+.pd2 .phero::before{content:"";position:absolute;z-index:-1;right:-60px;top:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,#ffffff33,#fff0 68%)}
+.pd2 .phero .tro{flex:none;width:68px;height:68px;border-radius:20px;display:grid;place-items:center;font-size:34px;background:#ffffff26;border:1px solid #ffffff44;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.pd2 .phero h2{margin:0;font-size:27px;letter-spacing:-.02em;font-weight:800;line-height:1.15}
+.pd2 .phero p{margin:4px 0 0;font-size:14px;opacity:.9}
+.pd2 .phero .chip{display:inline-flex;gap:6px;align-items:center;margin-top:12px;font-size:12px;font-weight:600;letter-spacing:.03em;padding:4px 12px;border-radius:99px;background:#ffffff26;border:1px solid #ffffff33}
+.pd2 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:18px}
+.pd2 .k2{--kc:#2563eb;--kb:#2563eb1a;position:relative;overflow:hidden;display:flex;align-items:center;gap:13px;padding:15px;border-radius:var(--p-r);border:1px solid var(--line);background:var(--card);box-shadow:var(--p-sh);animation:p2u .55s cubic-bezier(.2,.8,.2,1) both}
+.pd2 .k2::after{content:"";position:absolute;right:-24px;top:-24px;width:84px;height:84px;border-radius:50%;background:var(--kb);transition:transform .35s}.pd2 .k2:hover::after{transform:scale(1.5)}
+.pd2 .k2 i{position:relative;z-index:1;flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-style:normal;font-size:22px;background:linear-gradient(135deg,var(--kc),color-mix(in srgb,var(--kc) 55%,#fff));box-shadow:0 8px 16px -6px var(--kc)}
+.pd2 .k2 div{position:relative;z-index:1;min-width:0}.pd2 .k2 b{display:block;font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1.05}.pd2 .k2 span{font-size:12.5px;color:var(--mut);font-weight:500}
+.pd2 .k2.c1{--kc:#2563eb;--kb:#2563eb1a}.pd2 .k2.c2{--kc:#10b981;--kb:#10b9811c}.pd2 .k2.c3{--kc:#f59e0b;--kb:#f59e0b20}.pd2 .k2.c4{--kc:#8b5cf6;--kb:#8b5cf61c}.pd2 .k2.c5{--kc:#06b6d4;--kb:#06b6d41c}.pd2 .k2.c6{--kc:#ef4444;--kb:#ef44441a}
+.pd2 .psh{display:flex;align-items:center;gap:10px;margin:22px 2px 12px}.pd2 .psh i{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-style:normal;font-size:16px;background:var(--accs)}.pd2 .psh h3{margin:0;font-size:16px;font-weight:700;letter-spacing:-.01em}.pd2 .psh small{margin-left:auto;color:var(--mut);font-size:12px}
+.pd2 .pod{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:end;margin-bottom:6px}
+.pd2 .pc{position:relative;text-align:center;padding:20px 12px 16px;border-radius:var(--p-r);border:1px solid var(--line);background:var(--card);box-shadow:var(--p-sh);cursor:pointer;transition:transform .18s,box-shadow .18s;animation:p2u .6s cubic-bezier(.2,.8,.2,1) both}
+.pd2 .pc:hover{transform:translateY(-4px);box-shadow:0 16px 30px -14px #0b1b4a55}
+.pd2 .pc .rk{position:absolute;top:10px;left:10px;font-size:22px}
+.pd2 .pc .avw{display:inline-block;border-radius:50%;padding:3px;background:conic-gradient(from 200deg,#fde68a,#f59e0b,#fde68a)}.pd2 .pc .avw>*{display:block;border:3px solid var(--card)}
+.pd2 .pc b.nm{display:block;margin-top:10px;font-size:15px;line-height:1.25;overflow-wrap:anywhere}.pd2 .pc small{display:block;color:var(--mut);font-size:12px;margin-top:2px}
+.pd2 .pc .pt{display:inline-block;margin-top:10px;padding:3px 12px;border-radius:99px;font-weight:800;font-size:13px;background:var(--accs);color:var(--acc)}
+.pd2 .pc .md{margin-top:8px;display:flex;justify-content:center;flex-wrap:wrap;gap:4px}
+.pd2 .pc.p1{padding-top:30px;padding-bottom:22px;border-color:#fcd34d;background:linear-gradient(180deg,#fef3c7 0,var(--card) 62%)}.pd2 .pc.p1 .pt{background:#f59e0b;color:#fff}
+.pd2 .pc.p2{padding-bottom:18px}.pd2 .pc.p3{padding-bottom:14px}
+.pd2 .two2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.pd2 .cd2{border-radius:var(--p-r);border:1px solid var(--line);background:var(--card);box-shadow:var(--p-sh);padding:6px 16px 16px;animation:p2u .6s cubic-bezier(.2,.8,.2,1) both}
+.pd2 .cd2 h4{margin:12px 0 10px;font-size:14.5px;font-weight:700}
+.pd2 .medal{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.pd2 .medal div{border-radius:14px;padding:12px 8px;text-align:center;border:1px solid}.pd2 .medal b{display:block;font-size:26px;font-weight:800;line-height:1.1}.pd2 .medal span{font-size:12px;font-weight:600;opacity:.85}
+.pd2 .medal .m1{background:linear-gradient(160deg,#fef3c7,#fde68a);border-color:#fcd34d;color:#78350f}.pd2 .medal .m2{background:linear-gradient(160deg,#f3f4f6,#e5e7eb);border-color:#d1d5db;color:#374151}.pd2 .medal .m3{background:linear-gradient(160deg,#ffedd5,#fed7aa);border-color:#fdba74;color:#7c2d12}
+.pd2 .stk{display:flex;height:10px;border-radius:99px;overflow:hidden;margin-top:14px;background:color-mix(in srgb,var(--line) 70%,transparent)}.pd2 .stk i{display:block;height:100%;transform-origin:left;animation:p2g .8s cubic-bezier(.2,.8,.2,1) both}
+.pd2 .pb{display:grid;grid-template-columns:minmax(80px,38%) 1fr auto;align-items:center;gap:12px;margin:11px 0;font-size:13px}
+.pd2 .pb>span{display:flex;align-items:center;gap:8px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pd2 .pb>span em{flex:none;font-style:normal;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:11px;font-weight:800;background:var(--accs);color:var(--acc)}
+.pd2 .pb>span em.t1{background:#fde68a;color:#78350f}.pd2 .pb>span em.t2{background:#e5e7eb;color:#374151}.pd2 .pb>span em.t3{background:#fed7aa;color:#7c2d12}
+.pd2 .pb .tr{height:10px;border-radius:99px;background:color-mix(in srgb,var(--line) 70%,transparent);overflow:hidden}
+.pd2 .pb .tr i{display:block;height:100%;min-width:6px;border-radius:99px;background:linear-gradient(90deg,var(--acc),color-mix(in srgb,var(--acc) 50%,#7dd3fc));transform-origin:left;animation:p2g .8s cubic-bezier(.2,.8,.2,1) both}
+.pd2 .pb>b{font-size:14px;text-align:right;min-width:30px}
+.pd2 .tool{display:flex;flex-wrap:wrap;gap:10px;padding:12px;border-radius:var(--p-r);border:1px solid var(--line);background:var(--card);box-shadow:var(--p-sh);margin-bottom:12px}
+.pd2 .tool select{flex:1;min-width:180px}.pd2 .tool .sb2{flex:1;min-width:180px}
+.pd2 #pdl{border-radius:var(--p-r);box-shadow:var(--p-sh);overflow:hidden}
+.pd2 #pdl .row{margin:2px 6px;border:0;border-radius:14px;transition:background .15s,transform .15s}.pd2 #pdl .row:hover{background:var(--accs);transform:translateX(3px)}
+.pd2 #pdl .row>div:last-child{min-width:54px;padding:6px 10px;border-radius:12px;text-align:center;background:var(--accs);color:var(--acc)}.pd2 #pdl .row>div:last-child b{display:block;font-size:17px;line-height:1.1}
+@keyframes p2u{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}@keyframes p2g{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){.pd2 *{animation:none!important;transition:none!important}}
+@media(max-width:800px){.pd2 .phero{padding:20px 18px;border-radius:20px}.pd2 .phero h2{font-size:22px}.pd2 .phero .tro{width:54px;height:54px;font-size:27px;border-radius:16px}
+ .pd2 .kpis{grid-template-columns:repeat(2,1fr);gap:10px}.pd2 .k2{padding:12px;gap:10px}.pd2 .k2 i{width:40px;height:40px;font-size:19px}.pd2 .k2 b{font-size:21px}
+ .pd2 .pod{gap:8px}.pd2 .pc{padding:16px 6px 12px}.pd2 .pc.p1{padding-top:22px}.pd2 .pc b.nm{font-size:12.5px}.pd2 .pc .rk{font-size:17px;top:6px;left:6px}.pd2 .pc .md{display:none}}
+</style>
+
 </head><body>
 <div id="app"><p style="padding:48px 16px;text-align:center;color:var(--mut,#888);font:15px system-ui,sans-serif">Memuat Dojoku…</p></div><div id="m"></div><div id="toast" role="status" aria-live="polite"></div><div id="cloudst" aria-live="off" style="position:fixed;right:8px;top:calc(env(safe-area-inset-top,0px) + 4px);z-index:2;font-size:11px;color:var(--mut);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:1px 8px;pointer-events:none;opacity:.85"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -1486,8 +1539,17 @@ function pdraw(){const m={d:pdD,c:pdC,e:pdE,r:pdR,s:pdS,k:pdKM};$('#app').innerH
 
 /* 1. Data atlet dojo (diambil langsung dari data dojo) */
 function pdDL(){const q=PQ.trim().toLowerCase(),r=pdAct().filter(x=>(!PDJ||x.j.id==PDJ)&&(!q||(x.s.name+' '+x.j.name+' '+(x.s.nia||'')).toLowerCase().includes(q))).sort(pdSort);return r.length?r.map(x=>pdRow(x)).join(''):'<p class=emp>Belum ada atlet yang tercatat di kejuaraan atau prestasi.</p>'}
-function pdD(){const r=pdAct().filter(x=>!PDJ||x.j.id==PDJ);return`<h2 style="margin-bottom:12px">Data atlet dojo</h2>${pdK(r)}<div class=bar><select aria-label="Filter dojo" onchange="PDJ=this.value;draw()" style="flex:1;min-width:180px"><option value="">Semua dojo</option>${S.dojos.map(j=>`<option value="${esc(j.id)}" ${PDJ==j.id?'selected':''}>${esc(j.name)}</option>`).join('')}</select><div class=sb2><span aria-hidden=true>🔍</span><input type=search placeholder="Cari nama atlet" aria-label="Cari atlet" value="${esc(PQ)}" oninput="PQ=this.value;$('#pdl').innerHTML=pdDL()"></div></div><div class=card id=pdl style="padding:4px">${pdDL()}</div>${PNOTE}`}
-
+function pdD(){const r=pdAct().filter(x=>!PDJ||x.j.id==PDJ),R=r.slice().sort(pdSort),md=[0,1,2].map(i=>r.reduce((t,x)=>t+(+x.m[i]||0),0)),tm=md[0]+md[1]+md[2],cab=r.filter(x=>x.cab).length,pr=r.reduce((t,x)=>t+(+x.pr||0),0),nev=(()=>{try{return pdUpc().length}catch(e){return 0}})(),dj={};
+r.forEach(x=>{const o=dj[x.j.id]||(dj[x.j.id]={n:x.j.name,pt:0,a:0,m:0});o.pt+=x.pt;o.a++;o.m+=x.m[0]+x.m[1]+x.m[2]});
+const dl=Object.values(dj).sort((a,b)=>b.pt-a.pt||b.m-a.m).slice(0,5),mx=Math.max(1,...dl.map(x=>x.pt)),tp=R.slice(0,3),ord=tp.length==3?[1,0,2]:tp.map((_,i)=>i),ic=['🥇','🥈','🥉'],
+kp=(i,n,l,c)=>`<div class="k2 ${c}"><i>${i}</i><div><b>${n}</b><span>${l}</span></div></div>`,sh=(i,t,sm)=>`<div class=psh><i>${i}</i><h3>${t}</h3>${sm?`<small>${sm}</small>`:''}</div>`,
+pc=(x,i)=>`<div class="pc p${i+1}" tabindex=0 onclick="pdDet('${esc(x.id)}')" onkeydown="if(event.key=='Enter')pdDet('${esc(x.id)}')" style="animation-delay:${i*.07}s"><span class=rk>${ic[i]}</span><span class=avw>${av(x.s)}</span><b class=nm>${esc(x.s.name)}</b><small>${esc(x.j.name)}</small><span class=pt>${x.pt} poin</span><div class=md>${pdMed(x.m)}</div></div>`;
+return`<div class=pd2><div class=phero><span class=tro>🏆</span><div><h2>Pusat Data Atlet</h2><p>Pantau prestasi, medali, dan seleksi atlet dari seluruh dojo.</p><span class=chip>📅 ${esc(hariId(today()))}, ${esc(tglId(today()))}</span></div></div>
+<div class=kpis>${kp('🥋',r.length,'Atlet tercatat','c1')}${kp('🏯',new Set(r.map(x=>x.j.id)).size,'Dojo','c2')}${kp('🏅',tm,'Total medali','c3')}${kp('🌐',cab,'Atlet cabang','c4')}${kp('📅',nev,'Event mendatang','c5')}${kp('🔥',pr,'Total partisipasi','c6')}</div>
+${tp.length?sh('⭐','Atlet terbaik','berdasarkan poin')+`<div class=pod>${ord.map(i=>pc(tp[i],i)).join('')}</div>`:''}
+<div class=two2><div class=cd2><h4>Perolehan medali</h4><div class=medal><div class=m1><b>${md[0]}</b><span>🥇 Emas</span></div><div class=m2><b>${md[1]}</b><span>🥈 Perak</span></div><div class=m3><b>${md[2]}</b><span>🥉 Perunggu</span></div></div>${tm?`<div class=stk><i style="width:${md[0]/tm*100}%;background:#f59e0b"></i><i style="width:${md[1]/tm*100}%;background:#9ca3af;animation-delay:.1s"></i><i style="width:${md[2]/tm*100}%;background:#d97706;animation-delay:.2s"></i></div>`:''}</div>
+<div class=cd2><h4>Dojo dengan poin tertinggi</h4>${dl.map((x,i)=>`<div class=pb><span title="${esc(x.n)}"><em class="${i<3?'t'+(i+1):''}">${i+1}</em>${esc(x.n)}</span><div class=tr><i style="width:${Math.max(x.pt/mx*100,4)}%;animation-delay:${i*.06}s"></i></div><b>${x.pt}</b></div>`).join('')||'<p class=emp>Belum ada data.</p>'}</div></div>
+${sh('📋','Daftar atlet',r.length+' atlet')}<div class=tool><select aria-label="Filter dojo" onchange="PDJ=this.value;draw()"><option value="">Semua dojo</option>${S.dojos.map(j=>`<option value="${esc(j.id)}" ${PDJ==j.id?'selected':''}>${esc(j.name)}</option>`).join('')}</select><div class=sb2><span aria-hidden=true>🔍</span><input type=search placeholder="Cari nama atlet" aria-label="Cari atlet" value="${esc(PQ)}" oninput="PQ=this.value;$('#pdl').innerHTML=pdDL()"></div></div><div class=card id=pdl style="padding:4px">${pdDL()}</div>${PNOTE}</div>`}
 /* 2. Atlet cabang = pilihan dari atlet dojo */
 function pdC(){const M=pdMap(),cab=((S.pusat||{}).cab||[]).map(c=>M.get(c.aid)).filter(Boolean),O=pdOrgs();return`<div class=bar><h2 class=g>Atlet cabang</h2>${cab.length?'<button class=btn onclick=pdExp()>Ekspor (.xlsx)</button>':''}</div><p class=note style="margin:0 0 10px">Atlet cabang adalah atlet pilihan dari atlet dojo. Tambahkan lewat menu Seleksi Atlet atau dari detail atlet.</p>${O.map((o,i)=>{const r=cab.filter(x=>x.org==o).sort(pdSort),n=S.dojos.filter(j=>pdOrg(j)==o).length,mm=[0,1,2].map(k=>r.reduce((t,x)=>t+x.m[k],0));return`<div class=card style="padding:4px"><h3 style="padding:12px 12px 0">${esc(o)}</h3><div class=ev style="padding:6px 12px 8px"><span class=bd>${n} dojo</span><span class=bd>${r.length} atlet cabang</span>${pdMed(mm)}</div>${r.map(x=>pdRow(x,`<button class="btn sm" onclick="event.stopPropagation();pdCabTog('${esc(x.id)}')">Keluarkan</button>`)).join('')||'<p class=emp>Belum ada atlet cabang. Pilih dari atlet dojo.</p>'}<div style="padding:8px 12px 12px"><button class="btn sm pri" onclick="pdGoO(${i})">+ Pilih dari atlet dojo</button></div></div>`}).join('')||'<p class="emp card">Belum ada dojo terdaftar.</p>'}${PNOTE}`}
 function pdGoO(i){cm();PCB=pdOrgs()[i]||'';PT='s';draw()}
