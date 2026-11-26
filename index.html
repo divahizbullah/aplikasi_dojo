@@ -203,7 +203,81 @@ img.lg2,.lb img.lg2,.brand img.lg2{background:transparent;object-fit:contain}
 #btm::-webkit-scrollbar{display:none}
 #btm button{flex:1 0 auto;min-width:68px;padding:0 10px;white-space:nowrap;overflow-wrap:normal;word-break:normal}
 }
-</style></head><body>
+</style>
+<style id="dash2css">
+/* ===== DASBOR PUSAT v2 : modern ===== */
+.dash2{--d-r:20px;--d-sh:0 1px 2px #0b1b4a0d,0 8px 24px -8px #0b1b4a26;--d-gl:#ffffff1f;font-feature-settings:"tnum" 1}
+.dash2 .hero{position:relative;overflow:hidden;isolation:isolate;padding:26px 26px 24px;border-radius:24px;gap:18px;margin-bottom:18px;
+ background:radial-gradient(120% 140% at 100% 0%,#3b82f6 0%,#1d4ed8 38%,#082d82 78%,#061f5c 100%);box-shadow:0 18px 40px -16px #082d82aa,0 2px 6px #082d8240}
+.dash2 .hero::before{content:"";position:absolute;z-index:-1;right:-70px;top:-90px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,#ffffff2e,#ffffff00 68%)}
+.dash2 .hero::after{content:"";position:absolute;z-index:-1;left:38%;bottom:-120px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,#f5b63833,#f5b63800 65%)}
+.dash2 .hero .lg2,.dash2 .hero img{width:76px;height:76px;border:3px solid #ffffff55;box-shadow:0 8px 20px #00000040;font-size:36px}
+.dash2 .hero .dt{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:4px 11px;border-radius:99px;background:var(--d-gl);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid #ffffff2e;opacity:1}
+.dash2 .hero h2{font-size:28px;line-height:1.15;margin:10px 0 4px;letter-spacing:-.02em;font-weight:800}
+.dash2 .hero .og{display:block;font-size:14px;opacity:.88}
+.dash2 .hero .nx{display:flex;align-items:center;gap:8px;width:fit-content;max-width:100%;margin-top:14px;padding:8px 14px;border-radius:14px;background:var(--d-gl);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid #ffffff33;font-size:13px}
+.dash2 .hero .nx::before{content:"";width:8px;height:8px;border-radius:50%;background:#fbbf24;box-shadow:0 0 0 4px #fbbf2440;flex:none}
+.dash2 .hero .nx b{font-weight:700}
+.dash2 .kpis{gap:14px;margin-bottom:18px}
+.dash2 .kpi.st{--kc:#2563eb;--kb:#2563eb18;position:relative;overflow:hidden;gap:14px;padding:16px;border-radius:var(--d-r);border:1px solid var(--line);background:var(--card);box-shadow:var(--d-sh);color:var(--ink)}
+.dash2 .kpi.st::after{content:"";position:absolute;right:-26px;top:-26px;width:90px;height:90px;border-radius:50%;background:var(--kb);transition:transform .35s}
+.dash2 .kpi.st:hover::after{transform:scale(1.5)}
+.dash2 .kpi.st .ic{position:relative;z-index:1;width:50px;height:50px;border-radius:15px;font-size:23px;background:linear-gradient(135deg,var(--kc),color-mix(in srgb,var(--kc) 55%,#fff));box-shadow:0 8px 16px -6px var(--kc);filter:saturate(1.05)}
+.dash2 .kpi.st>div{position:relative;z-index:1}
+.dash2 .kpi.st b{font-size:28px;font-weight:800;letter-spacing:-.02em;line-height:1.05;color:var(--ink)}
+.dash2 .kpi.st span{display:block;margin-top:2px;font-size:12.5px;color:var(--mut);font-weight:500}
+.dash2 .kpi.st.a{background:var(--card);border-color:var(--line);color:var(--ink)}
+.dash2 .kpi.st.a span{color:var(--mut)}
+.dash2 .kpi.c1{--kc:#2563eb;--kb:#2563eb1a}.dash2 .kpi.c2{--kc:#1f2937;--kb:#1f293714}.dash2 .kpi.c3{--kc:#10b981;--kb:#10b9811c}
+.dash2 .kpi.c4{--kc:#f59e0b;--kb:#f59e0b1f}.dash2 .kpi.c5{--kc:#8b5cf6;--kb:#8b5cf61c}.dash2 .kpi.c6{--kc:#06b6d4;--kb:#06b6d41c}
+.dash2 .kpi.c7{--kc:#ef4444;--kb:#ef44441a}.dash2 .kpi.c8{--kc:#eab308;--kb:#eab3081f}
+.dash2 .qa{gap:10px;margin-bottom:20px}
+.dash2 .qa .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:14px;font-weight:600;font-size:14px;box-shadow:var(--d-sh);transition:transform .15s,box-shadow .15s,background .15s}
+.dash2 .qa .btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px -10px #0b1b4a55}
+.dash2 .qa .btn.pri{background:linear-gradient(135deg,#2563eb,#1d4ed8);border:0;color:#fff;box-shadow:0 10px 22px -10px #1d4ed8}
+.dash2 .qa .btn i{font-style:normal;font-size:16px}
+.dash2 .dg{gap:16px}
+.dash2 .dg>.card{margin:0;padding:6px;border-radius:var(--d-r);box-shadow:var(--d-sh);border:1px solid var(--line);overflow:hidden}
+.dash2 .sec{display:flex;align-items:center;gap:10px;padding:14px 14px 8px}
+.dash2 .sec .si2{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-size:16px;background:var(--accs);flex:none}
+.dash2 .sec h3{margin:0;font-size:15px;font-weight:700;letter-spacing:-.01em}
+.dash2 .sec .ct{margin-left:auto;font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:99px;background:var(--accs);color:var(--acc)}
+.dash2 .row{margin:2px 6px;padding:10px 10px;border-radius:14px;border:0;gap:12px}
+.dash2 .row:hover{background:var(--accs)}
+.dash2 .row b{font-weight:650}
+.dash2 .dd{width:48px;border-radius:13px;padding:6px 0;background:linear-gradient(160deg,var(--accs),color-mix(in srgb,var(--accs) 60%,var(--card)));color:var(--acc);border:1px solid color-mix(in srgb,var(--acc) 14%,transparent)}
+.dash2 .dd b{font-size:19px;line-height:1.1}
+.dash2 .cd{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#3b2400;box-shadow:0 4px 10px -4px #f59e0b}
+.dash2 .row .bd{background:var(--accs);color:var(--acc);border:0;font-weight:700}
+.dash2 .pbs{padding:4px 14px 14px}
+.dash2 .pb{display:grid;grid-template-columns:minmax(70px,34%) 1fr auto;align-items:center;gap:12px;margin:11px 0;font-size:13px}
+.dash2 .pb>span{display:flex;align-items:center;gap:8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+.dash2 .pb>span em{font-style:normal;flex:none;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:11px;font-weight:800;background:var(--accs);color:var(--acc)}
+.dash2 .pb>span em.t1{background:#fde68a;color:#78350f}.dash2 .pb>span em.t2{background:#e5e7eb;color:#374151}.dash2 .pb>span em.t3{background:#fed7aa;color:#7c2d12}
+.dash2 .pb .tr{height:10px;border-radius:99px;background:color-mix(in srgb,var(--line) 70%,transparent);overflow:hidden}
+.dash2 .pb .tr i{display:block;height:100%;border-radius:99px;min-width:6px;background:linear-gradient(90deg,var(--acc),color-mix(in srgb,var(--acc) 50%,#7dd3fc));box-shadow:inset 0 0 0 1px #00000010;transform-origin:left;animation:d2g .8s cubic-bezier(.2,.8,.2,1) both}
+.dash2 .pb>b{font-size:14px;min-width:24px;text-align:right}
+.dash2 .pb.belt .tr i{background:var(--bc);box-shadow:inset 0 0 0 1px #00000026}
+.dash2 .medal{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:6px 14px 14px}
+.dash2 .medal div{border-radius:14px;padding:12px 8px;text-align:center;border:1px solid var(--line);background:var(--card)}
+.dash2 .medal div b{display:block;font-size:24px;font-weight:800;line-height:1.1}.dash2 .medal div span{font-size:12px;color:var(--mut);font-weight:600}
+.dash2 .medal .m1{background:linear-gradient(160deg,#fef3c7,#fde68a);border-color:#fcd34d;color:#78350f}.dash2 .medal .m2{background:linear-gradient(160deg,#f3f4f6,#e5e7eb);border-color:#d1d5db;color:#374151}.dash2 .medal .m3{background:linear-gradient(160deg,#ffedd5,#fed7aa);border-color:#fdba74;color:#7c2d12}
+.dash2 .medal div span{color:inherit;opacity:.8}
+.dash2 .more{padding:2px 14px 14px}
+.dash2 .emp{padding:26px 16px;font-size:13.5px}
+.dash2 .emp::before{content:"✨";display:block;font-size:24px;margin-bottom:6px;opacity:.7}
+.dash2 .dg>.card,.dash2 .kpi.st,.dash2 .hero{animation:d2u .55s cubic-bezier(.2,.8,.2,1) both}
+.dash2 .dg>.card:nth-child(2){animation-delay:.05s}.dash2 .dg>.card:nth-child(3){animation-delay:.1s}.dash2 .dg>.card:nth-child(4){animation-delay:.15s}.dash2 .dg>.card:nth-child(5){animation-delay:.2s}.dash2 .dg>.card:nth-child(6){animation-delay:.25s}
+@keyframes d2u{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes d2g{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){.dash2 *,.dash2 .hero{animation:none!important;transition:none!important}}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .dash2{--d-sh:0 1px 2px #0006,0 10px 26px -10px #000a}:root:not([data-theme="light"]) .dash2 .kpi.st .ic{box-shadow:0 8px 16px -8px var(--kc)}}
+:root[data-theme="dark"] .dash2{--d-sh:0 1px 2px #0006,0 10px 26px -10px #000a}
+@media(max-width:800px){.dash2 .hero{padding:20px 18px;border-radius:20px}.dash2 .hero h2{font-size:23px}.dash2 .hero .lg2,.dash2 .hero img{width:60px;height:60px;font-size:28px}
+ .dash2 .kpi.st{padding:13px;gap:11px}.dash2 .kpi.st .ic{width:42px;height:42px;font-size:20px;border-radius:13px}.dash2 .kpi.st b{font-size:23px}
+ .dash2 .qa{flex-wrap:nowrap;overflow-x:auto;margin-right:-12px;padding:2px 12px 8px 0;scrollbar-width:none}.dash2 .qa::-webkit-scrollbar{display:none}.dash2 .qa .btn{flex:none;min-height:42px}}
+</style>
+</head><body>
 <div id="app"><p style="padding:48px 16px;text-align:center;color:var(--mut,#888);font:15px system-ui,sans-serif">Memuat Dojoku…</p></div><div id="m"></div><div id="toast" role="status" aria-live="polite"></div><div id="cloudst" aria-live="off" style="position:fixed;right:8px;top:calc(env(safe-area-inset-top,0px) + 4px);z-index:2;font-size:11px;color:var(--mut);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:1px 8px;pointer-events:none;opacity:.85"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.12.2/firebase-app-compat.min.js"></script>
@@ -864,16 +938,17 @@ let L;try{L=((w.__ukGet()||{}).info||{}).wilayah||[]}catch(e){return}
 const P=PS();P.wil=P.wil||[];let c=0;L.forEach(x=>{if(!x||!String(x.nama||'').trim()||P.wil.some(y=>wlK(y.nama)==wlK(x.nama)))return;P.wil.push({id:x.id||uid(),nama:clean(x.nama,80),ketua:clean(x.ketua,80),sekretaris:clean(x.sekretaris,80),bendahara:clean(x.bendahara,80)});c++});
 if(c){save();if(CT=='w')draw()}if(!quiet)toast(c?c+' data pengurus wilayah diambil dari aplikasi UKT':'Tidak ada data baru di aplikasi UKT')}
 function sDash(){const a=sAng(),msh=sMsh(),P=sP(),up=sUp(),ev=pdEV().filter(e=>(e.tanggal||'')>=today()).sort((x,y)=>x.tanggal.localeCompare(y.tanggal)),ru=[...(P.rutin||[])].sort((x,y)=>y.tgl.localeCompare(x.tgl)),rp=[...(P.rapat||[])].sort((x,y)=>y.tgl.localeCompare(x.tgl));
-const pj=S.dojos.map(j=>({j,n:msh.filter(x=>x.ids.includes(j.id)).length})).filter(x=>x.n).sort((x,y)=>y.n-x.n),k=kop(),lg=si(k.logo),hr=new Date().getHours(),sl=hr<11?'pagi':hr<15?'siang':hr<18?'sore':'malam',nx=up[0];
+const pj=S.dojos.map(j=>({j,n:msh.filter(x=>x.ids.includes(j.id)).length})).filter(x=>x.n).sort((x,y)=>y.n-x.n),k=kop(),hr=new Date().getHours(),sl=hr<11?'pagi':hr<15?'siang':hr<18?'sore':'malam',nx=up[0];
 const dl=d=>{const n=daysTo(d);return n<=0?'Hari ini':n==1?'Besok':'H-'+n},bd=d=>{const t=dtp(d);return t?`<div class=dd><b>${t.getUTCDate()}</b><span>${BLN_ID[t.getUTCMonth()].slice(0,3).toUpperCase()}</span></div>`:''};
-const mxj=Math.max(1,...pj.map(x=>x.n)),bl=BELTS.map(b=>[b,a.filter(x=>x.b==b).length]),mxb=Math.max(1,...bl.map(x=>x[1]));
-const kp=(i,n,l,c)=>`<div class="kpi st${c||''}"><i class=ic>${i}</i><div><b>${n}</b><span>${l}</span></div></div>`,
-cs=(t,b)=>`<div class=card style="padding:4px"><div class=sec><h3>${t}</h3></div>${b}</div>`,
-dr=(d,t,sub,r)=>`<div class=row style="cursor:default">${bd(d)}<div class=g><b>${esc(t)}</b><small>${sub}</small></div>${r||''}</div>`;
-return`<div class=hero>${LG2()}<div class=g><small>${esc(hariId(today()))}, ${esc(tglId(today()))}</small><h2>Selamat ${sl}, pengurus</h2><span>${esc(k.org||'Dasbor pengurus')}${k.sub?' · '+esc(k.sub):''}</span>${nx?`<div class=nx>Berikutnya: <b>${esc(nx.t)}</b> · ${esc(dl(nx.d))}</div>`:''}</div></div>
-<div class="kpis k6 k8">${kp('🥋',S.dojos.length,'Dojo')}${kp('⚫',msh.length,'MSH (sabuk hitam)',' a')}${kp('👥',a.length,'Kohay aktif')}${kp('🏆',ev.length,'Event mendatang')}${kp('🔁',ru.length,'Kegiatan rutin')}${kp('📋',rp.length,'Rapat')}${(()=>{const r=pdAct();return kp('🏃',r.length,'Atlet tercatat')+kp('🏅',r.reduce((t,x)=>t+x.m[0]+x.m[1]+x.m[2],0),'Medali',' a')})()}</div>
-<div class=qa><button class="btn pri" onclick="CT='s';SKT='s';draw();surForm()">✉️ Buat surat</button><button class=btn onclick="CT='s';SKT='s';draw();surTgForm()">📝 Surat Tugas</button><button class=btn onclick="CT='k';draw()">📅 Kegiatan</button><button class=btn onclick="CT='m';draw()">🗂️ Database</button><button class=btn onclick="CT='g';draw()">⚙️ Pengaturan</button></div>
-<div class="grid dg">${cs('Agenda terdekat',up.slice(0,6).map(x=>dr(x.d,x.t,esc(x.k)+(x.l?' · '+esc(x.l):''),`<span class=cd>${esc(dl(x.d))}</span>`)).join('')||'<p class=emp>Belum ada agenda mendatang.</p>')}${cs('Event mendatang',ev.slice(0,5).map(e=>dr(e.tanggal,e.nama,esc(e.tingkat||''),`<span class=bd>${(e.peserta||[]).length} atlet</span>`)).join('')||'<p class=emp>Belum ada event mendatang.</p>')}${cs('Kohay aktif per sabuk',`<div style="padding:4px 12px 12px">${bl.map(([b,n])=>`<div class=hb><span style="width:64px">${esc(b)}</span><i style="width:${n/mxb*60}%;background:${BC[b]}"></i><b>${n}</b></div>`).join('')}</div>`)}${cs('MSH per dojo',`<div style="padding:4px 12px 12px">${pj.slice(0,5).map(x=>`<div class=hb><span style="width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(x.j.name)}">${esc(x.j.name)}</span><i style="width:${x.n/mxj*55}%;background:var(--acc)"></i><b>${x.n}</b></div>`).join('')||'<p class=emp>Belum ada MSH.</p>'}<div class=bar style="margin-top:8px">${sBtn('Lihat semua ('+S.dojos.length+' dojo), cari dan filter','mpOpen()','pri')}</div></div>`)}${cs('Kegiatan rutin',ru.slice(0,5).map(x=>dr(x.tgl,x.nama,esc(x.jenis||'')+(x.lokasi?' · '+esc(x.lokasi):''))).join('')||'<p class=emp>Belum ada kegiatan rutin.</p>')}${cs('Notulensi rapat terbaru',rp.slice(0,3).map(r=>dr(r.tgl,r.nama,(r.hadir||[]).length+' hadir<br>'+esc((r.notulen||'Belum ada notulensi').slice(0,110)),sBtn('Buka',`CT='k';KT='a';RID='${esc(r.id)}';draw()`))).join('')||'<p class=emp>Belum ada rapat.</p>')}</div>`}
+const mxj=Math.max(1,...pj.map(x=>x.n)),bl=BELTS.map(b=>[b,a.filter(x=>x.b==b).length]),mxb=Math.max(1,...bl.map(x=>x[1])),at=pdAct(),md=[0,1,2].map(i=>at.reduce((t,x)=>t+(+x.m[i]||0),0));
+const kp=(i,n,l,c)=>`<div class="kpi st ${c}"><i class=ic>${i}</i><div><b>${n}</b><span>${l}</span></div></div>`,
+cs=(t,b,ic,ct)=>`<div class=card><div class=sec><i class=si2>${ic}</i><h3>${t}</h3>${ct!=null?`<span class=ct>${ct}</span>`:''}</div>${b}</div>`,
+dr=(d,t,sub,r)=>`<div class=row style="cursor:default">${bd(d)}<div class=g><b>${esc(t)}</b><small>${sub}</small></div>${r||''}</div>`,
+rk=i=>`<em class="${i<3?'t'+(i+1):''}">${i+1}</em>`;
+return`<div class=dash2><div class=hero>${LG2()}<div class=g><span class=dt>📅 ${esc(hariId(today()))}, ${esc(tglId(today()))}</span><h2>Selamat ${sl}, pengurus 👋</h2><span class=og>${esc(k.org||'Dasbor pengurus')}${k.sub?' · '+esc(k.sub):''}</span>${nx?`<div class=nx><span>Berikutnya: <b>${esc(nx.t)}</b> · ${esc(dl(nx.d))}</span></div>`:''}</div></div>
+<div class="kpis k6 k8">${kp('🥋',S.dojos.length,'Dojo','c1')}${kp('⚫',msh.length,'MSH (sabuk hitam)','c2 a')}${kp('👥',a.length,'Kohay aktif','c3')}${kp('🏆',ev.length,'Event mendatang','c4')}${kp('🔁',ru.length,'Kegiatan rutin','c5')}${kp('📋',rp.length,'Rapat','c6')}${kp('🏃',at.length,'Atlet tercatat','c7')}${kp('🏅',md[0]+md[1]+md[2],'Medali','c8 a')}</div>
+<div class=qa><button class="btn pri" onclick="CT='s';SKT='s';draw();surForm()"><i>✉️</i>Buat surat</button><button class=btn onclick="CT='s';SKT='s';draw();surTgForm()"><i>📝</i>Surat Tugas</button><button class=btn onclick="CT='k';draw()"><i>📅</i>Kegiatan</button><button class=btn onclick="CT='m';draw()"><i>🗂️</i>Database</button><button class=btn onclick="CT='g';draw()"><i>⚙️</i>Pengaturan</button></div>
+<div class="grid dg">${cs('Agenda terdekat',up.slice(0,6).map(x=>dr(x.d,x.t,esc(x.k)+(x.l?' · '+esc(x.l):''),`<span class=cd>${esc(dl(x.d))}</span>`)).join('')||'<p class=emp>Belum ada agenda mendatang.</p>','🗓️',up.length||null)}${cs('Event mendatang',ev.slice(0,5).map(e=>dr(e.tanggal,e.nama,esc(e.tingkat||''),`<span class=bd>${(e.peserta||[]).length} atlet</span>`)).join('')||'<p class=emp>Belum ada event mendatang.</p>','🏆',ev.length||null)}${cs('Prestasi atlet',`<div class=medal><div class=m1><b>${md[0]}</b><span>🥇 Emas</span></div><div class=m2><b>${md[1]}</b><span>🥈 Perak</span></div><div class=m3><b>${md[2]}</b><span>🥉 Perunggu</span></div></div>`,'🏅',at.length+' atlet')}${cs('Kohay aktif per sabuk',`<div class=pbs>${bl.map(([b,n],i)=>`<div class="pb belt" style="--bc:${BC[b]}"><span>${esc(b)}</span><div class=tr><i style="width:${Math.max(n/mxb*100,n?4:0)}%;animation-delay:${i*.05}s"></i></div><b>${n}</b></div>`).join('')}</div>`,'🥋',a.length)}${cs('MSH per dojo',`<div class=pbs>${pj.slice(0,5).map((x,i)=>`<div class=pb><span title="${esc(x.j.name)}">${rk(i)}${esc(x.j.name)}</span><div class=tr><i style="width:${x.n/mxj*100}%;animation-delay:${i*.06}s"></i></div><b>${x.n}</b></div>`).join('')||'<p class=emp>Belum ada MSH.</p>'}</div><div class=more>${sBtn('Lihat semua ('+S.dojos.length+' dojo), cari dan filter','mpOpen()','pri')}</div>`,'⚫',msh.length)}${cs('Kegiatan rutin',ru.slice(0,5).map(x=>dr(x.tgl,x.nama,esc(x.jenis||'')+(x.lokasi?' · '+esc(x.lokasi):''))).join('')||'<p class=emp>Belum ada kegiatan rutin.</p>','🔁',ru.length||null)}${cs('Notulensi rapat terbaru',rp.slice(0,3).map(r=>dr(r.tgl,r.nama,(r.hadir||[]).length+' hadir<br>'+esc((r.notulen||'Belum ada notulensi').slice(0,110)),sBtn('Buka',`CT='k';KT='a';RID='${esc(r.id)}';draw()`))).join('')||'<p class=emp>Belum ada rapat.</p>','📋',rp.length||null)}</div></div>`}
 /* Kop surat gaya BKC: logo kiri & kanan, empat baris nama, dua baris alamat */
 const HARI_ID=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'],BLN_ID=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
 const dtp=d=>{const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(d||'');return m?new Date(Date.UTC(+m[1],+m[2]-1,+m[3])):null};
